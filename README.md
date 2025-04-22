@@ -17,6 +17,7 @@ add-migration Inicio -Context Context -verbose
 update-database Inicio 
  
 5 - FALTOU FAZER:
+
 5.1 - Cobertura testes de 80%
 * Não tive tempo, caso desejem me deem mais dias que faço. 
 
@@ -54,7 +55,9 @@ Teremos mais tempo para desenvolver com qualidade?
 Melhoria seria rever o código e retirar possíveis redundancias que possam existir.
 
 
-Testes Swagger:
+
+
+## Testes Swagger:
 INSERIR USER:
 {
   "username": "Teste",
