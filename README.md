@@ -1,212 +1,145 @@
 # Developer Evaluation Project
 
-`READ CAREFULLY`
+## Considerações:
 
-## Instructions
-**The test below will have up to 7 calendar days to be delivered from the date of receipt of this manual.**
+1 – Feito com NetCore6, Visual Studio 22.
 
-- The code must be versioned in a public Github repository and a link must be sent for evaluation once completed
-- Upload this template to your repository and start working from it
-- Read the instructions carefully and make sure all requirements are being addressed
-- The repository must provide instructions on how to configure, execute and test the project
-- Documentation and overall organization will also be taken into consideration
+2 - Usei uma arquitetura DDD para tentar deixar o mais limpo possível, com separação dos projetos.
 
-## Use Case
-**You are a developer on the DeveloperStore team. Now we need to implement the API prototypes.**
+3 – O designer parttern eu optei pelo CQRS. Eu gosto muito pois faz uma separação entre buscas e ações (Update, Insert, Delete) no banco de dados, 
+e com isso fornece uma melhor organização e facilita em futuras manutenções. Também facilita a comunicação com mais de um banco de dados. 
+Ponto negativo talvez seja a maior quantidade de arquivos... Infelizmente não ficou 100% por falta de tempo e talvez conhecimento. 
 
-As we work with `DDD`, to reference entities from other domains, we use the `External Identities` pattern with denormalization of entity descriptions.
-
-Therefore, you will write an API (complete CRUD) that handles sales records. The API needs to be able to inform:
-
-* Sale number
-* Date when the sale was made
-* Customer
-* Total sale amount
-* Branch where the sale was made
-* Products
-* Quantities
-* Unit prices
-* Discounts
-* Total amount for each item
-* Cancelled/Not Cancelled
-
-It's not mandatory, but it would be a differential to build code for publishing events of:
-* SaleCreated
-* SaleModified
-* SaleCancelled
-* ItemCancelled
-
-If you write the code, **it's not required** to actually publish to any Message Broker. You can log a message in the application log or however 
-you find most convenient.
-
-### Business Rules
-
-* Purchases above 4 identical items have a 10% discount
-* Purchases between 10 and 20 identical items have a 20% discount
-* It's not possible to sell above 20 identical items
-* Purchases below 4 items cannot have a discount
-
-These business rules define quantity-based discounting tiers and limitations:
-
-1. Discount Tiers:
-   - 4+ items: 10% discount
-   - 10-20 items: 20% discount
-
-2. Restrictions:
-   - Maximum limit: 20 items per product
-   - No discounts allowed for quantities below 4 items
-
-## Overview
-This section provides a high-level overview of the project and the various skills and competencies it aims to assess for developer candidates. 
-
-See [Overview](/.doc/overview.md)
-
-## Tech Stack
-This section lists the key technologies used in the project, including the backend, testing, frontend, and database components. 
-
-See [Tech Stack](/.doc/tech-stack.md)
-
-## Frameworks
-This section outlines the frameworks and libraries that are leveraged in the project to enhance development productivity and maintainability. 
-
-See [Frameworks](/.doc/frameworks.md)
-
-<!-- 
-## API Structure
-This section includes links to the detailed documentation for the different API resources:
-- [API General](./docs/general-api.md)
-- [Products API](/.doc/products-api.md)
-- [Carts API](/.doc/carts-api.md)
-- [Users API](/.doc/users-api.md)
-- [Auth API](/.doc/auth-api.md)
--->
-
-## Project Structure
-This section describes the overall structure and organization of the project files and directories. 
-
-See [Project Structure](/.doc/project-structure.md)
-
-
-
-
-
-
-
-
-
-
-##Testes/Dicas candidato Sergio Farias
-1 - USEI SQL EXPRESS COMO BD
-
-2 - NO PACKGE MANAGER CONSOLE RODAR O MIGRATIONS
+4 - Para banco dados usei o SQL Express com Migrations: 
+NO PACKAGE MANAGER CONSOLE RODAR O MIGRATIONS
 PROJ:Adapters\Drivers\WebApi\Ambev.DeveloperEvaluation.WebApi
 add-migration Inicio -Context Context -verbose
-update-database Incio 
+update-database Inicio 
+ 
+5 - FALTOU FAZER:
+5.1 - Cobertura testes de 80%
+* Não tive tempo, caso desejem me deem mais dias que faço. 
 
-3 - CARGA BD:
-INSERT INTO [dbo].[Customers] (id, Name, CreatedAt) VALUES('3fa85f64-5717-4562-b3fc-2c963f66afa5','Cliente1', GETDATE())
-INSERT INTO [dbo].[Customers] (id, Name, CreatedAt) VALUES('3fa85f64-5717-4562-b3fc-2c963f66afa6','Cliente2', GETDATE())
-INSERT INTO [dbo].[Branchs] (id, Name, CreatedAt) VALUES('3fa85f64-5717-4562-b3fc-2c963f66afa7','Filial1', GETDATE())
-INSERT INTO [dbo].[Branchs] (id, Name, CreatedAt) VALUES('3fa85f64-5717-4562-b3fc-2c963f66afa8','Filial2', GETDATE())
-INSERT INTO [dbo].[Products] (id, Name, Price, CreatedAt) VALUES('3fa85f64-5717-4562-b3fc-2c963f66afa9','Lapís','3.50', GETDATE())
-INSERT INTO [dbo].[Products] (id, Name, Price, CreatedAt) VALUES('3fa85f64-5717-4562-b3fc-2c963f66afa1','Borracha','4.50', GETDATE())
-INSERT INTO [dbo].[Products] (id, Name, Price, CreatedAt) VALUES('3fa85f64-5717-4562-b3fc-2c963f66afa2','Caneta','5.50', GETDATE())
+5.2 - Relatórios de Desempenho:
+* Não tive tempo, caso desejem me deem mais dias que faço. 
+
+5.3 - Deleção Tarefas:
+* Eu esqueci de fazer, caso desejem me deem mais dias que faço.
+
+5.4 - Colocação no docker
+* Dockfile foi feito mas eu não sou Administrador da minha máquina, o que impossibilitou eu fazer a imagem. 
+No cmd:
+c:\Projetos\TesteDigitas>docker build -t testeeclipseworks .
+c:\Projetos\TesteDigitas>docker run -d -p 5001:80 --name web-api-container testeeclipseworks
+Na imagem chamar swagger: http://localhost:5001/swagger/index.html
+
+5.5 - Comentários das Tarefas:
+* Fiz parcialmente, faltou colocar na implementação.  
+
+6 - Testes:
+6.1 - No projeto XUnit.Coverlet.Collector: 
+dotnet test C:\Projetos\EclipseWorks.DeveloperEvaluation\tests\EclipseWorks.DeveloperEvaluation.Unit\EclipseWorks.DeveloperEvaluation.Collector.Unit\EclipseWorks.DeveloperEvaluation.Collector.Unit.csproj --collect:"XPlat Code Coverage"
+6.2 - No projeto XUnit.Coverlet.MSBuild:
+6.2.1 - dotnet tool update -g dotnet-reportgenerator-globaltool
+6.2.2 - dotnet test C:\Projetos\EclipseWorks.DeveloperEvaluation\tests\EclipseWorks.DeveloperEvaluation.Unit\EclipseWorks.DeveloperEvaluation.MSBuild.Unit1\EclipseWorks.DeveloperEvaluation.MSBuild.Unit.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+6.2.3 - reportgenerator -reports:"C:\Projetos\EclipseWorks.DeveloperEvaluation\tests\EclipseWorks.DeveloperEvaluation.Unit\EclipseWorks.DeveloperEvaluation.Collector.Unit\TestResults\931eb173-2b7d-44ee-8906-ce95c1eb40f4\coverage.cobertura.xml" -targetdir:"coveragereport" -reporttypes:Html coverage_report\index.html
 
 
-4 - TESTES SWAGGER
-4.1 - NO SWAGGER CRIAR UMA NOTA COM DOIS ITENS
+## Fase 2: Refinamento:
+Poderiamos aprimorar os Relatórios de desempenho na segunda fase? 
+Para segunda fase podemos dedicar parte do tempo para melhorar/fazer uma documentação? 
+Teremos mais tempo para desenvolver com qualidade?
+
+## Fase 3: Melhorias:
+Melhoria seria rever o código e retirar possíveis redundancias que possam existir.
+
+
+Testes Swagger:
+INSERIR USER:
 {
-  "saleNumber": "1234",
-  "saleDate": "2025-03-17T23:41:07.226Z",
-  "customerId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "branchId": "3FA85F64-5717-4562-B3FC-2C963F66AFA8",
-  "saleItem": [
+  "username": "Teste",
+  "password": "Aa@12345",
+  "phone": "21987702255",
+  "email": "sergfarias@gmail.com",
+  "status": 1,
+  "role": 1
+}
+
+
+INSERIR PROJETO SEM TAREFAS:
+{
+  "projectNumber": "10001",
+  "projectDate": "2025-04-17T01:14:45.590Z",
+  "userId": "929B432B-B443-4F1C-E96D-08DD81270A84",
+  "status": 1
+}
+
+
+INSERIR PROJETO COM TAREFAS:
+{
+  "projectNumber": "10002",
+  "projectDate": "2025-04-17T01:14:45.590Z",
+  "userId": "929B432B-B443-4F1C-E96D-08DD81270A84",
+  "status": 1,
+  "tasks": [
     {
-      "productId": "3FA85F64-5717-4562-B3FC-2C963F66AFA1",
-	   "quantities": 4
+      "projectId": "D271498D-B92E-426E-8583-49FCE3CFB14A",
+      "title": "Tarefa1",
+	  "DueDate": "2025-04-17T01:14:45.590Z",
+      "description": "Descrição tarefa1",
+	  "details":"testes detalhes",
+      "status": 1,
+      "priority": 1
     },
 	{
-      "productId": "3FA85F64-5717-4562-B3FC-2C963F66AFA2",
-	  "quantities": 5
+      "projectId": "D271498D-B92E-426E-8583-49FCE3CFB14A",
+      "title": "Tarefa2",
+	  "DueDate": "2025-04-17T01:14:45.590Z",
+      "description": "Descrição tarefa2",
+	  "details":"testes detalhes",
+      "status": 1,
+      "priority": 1
     }
   ]
 }
 
-4.2 - NO SWAGGER ALTERAR UM NOTA PARA APENAS UM ITEM - EM ID COLOCAR O ID GERADO ACIMA
+PESQUISAR PROJETOS POR USUÁRIO: 929B432B-B443-4F1C-E96D-08DD81270A84
+
+
+
+INSERIR SOMENTE TAREFA:
 {
-  "id": "22812DC4-1B02-4FED-8965-388E78D62A13",
-  "saleNumber": "1234",
-  "saleDate": "2025-03-18T22:14:13.437Z",
-  "customerId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "branchId": "3FA85F64-5717-4562-B3FC-2C963F66AFA8",
-  "saleItem": [
-    {
-      "productId": "3FA85F64-5717-4562-B3FC-2C963F66AFA9",
-      "quantities": 10
-    }
-  ]
+     "projectId": "D4D38361-3493-4B98-A9C2-D7F33A10D565",
+     "title": "Tarefa3",
+	 "details":"testes detalhes",
+     "description": "Descrição tarefa3",
+	 "DueDate": "2025-04-17T01:14:45.590Z",
+     "priority": 1
 }
 
-4.3 - NO SWAGGER CRIAR UMA NOTA COM UM ITEM
-* Purchases above 4 identical items have a 10% discount
+ALTEAR TAREFA:
 {
-  "saleNumber": "1234",
-  "saleDate": "2025-03-17T23:41:07.226Z",
-  "customerId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "branchId": "3FA85F64-5717-4562-B3FC-2C963F66AFA8",
-  "saleItem": [
-    {
-      "productId": "3FA85F64-5717-4562-B3FC-2C963F66AFA1",
-	   "quantities": 5
-    }
-  ]
+     "Id": "75E20427-99DB-403B-D34B-08DD812B4E6B",
+     "details":"testes detalhes123",
+     "status": 2
 }
 
 
-4.4 - NO SWAGGER CRIAR UMA NOTA COM UM ITEM
-* Purchases between 10 and 20 identical items have a 20% discount
-{
-  "saleNumber": "1234",
-  "saleDate": "2025-03-17T23:41:07.226Z",
-  "customerId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "branchId": "3FA85F64-5717-4562-B3FC-2C963F66AFA8",
-  "saleItem": [
-    {
-      "productId": "3FA85F64-5717-4562-B3FC-2C963F66AFA1",
-	   "quantities": 11
-    }
-  ]
-}
 
 
-4.5 - NO SWAGGER CRIAR UMA NOTA COM UM ITEM
-* It's not possible to sell above 20 identical items
-{
-  "saleNumber": "1234",
-  "saleDate": "2025-03-17T23:41:07.226Z",
-  "customerId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "branchId": "3FA85F64-5717-4562-B3FC-2C963F66AFA8",
-  "saleItem": [
-    {
-      "productId": "3FA85F64-5717-4562-B3FC-2C963F66AFA1",
-	   "quantities": 21
-    }
-  ]
-}
 
 
-4.6 - NO SWAGGER CRIAR UMA NOTA COM UM ITEM
-* Purchases below 4 items cannot have a discount
-{
-  "saleNumber": "1234",
-  "saleDate": "2025-03-17T23:41:07.226Z",
-  "customerId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "branchId": "3FA85F64-5717-4562-B3FC-2C963F66AFA8",
-  "saleItem": [
-    {
-      "productId": "3FA85F64-5717-4562-B3FC-2C963F66AFA1",
-	   "quantities": 21
-    }
-  ]
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
