@@ -2,7 +2,7 @@
 
 ## Considerações:
 
-1 – Feito com NetCore6, Visual Studio 22.
+1 – Feito com NetCore8, Visual Studio 22.
 
 2 - Usei uma arquitetura DDD para tentar deixar o mais limpo possível, com separação dos projetos.
 
@@ -64,6 +64,7 @@ Melhoria seria rever o código e retirar possíveis redundancias que possam exis
 
 ## Testes Swagger:
 INSERIR USER:
+
 {
   "username": "Teste",
   "password": "Aa@12345",
@@ -75,6 +76,7 @@ INSERIR USER:
 
 
 INSERIR PROJETO SEM TAREFAS:
+
 {
   "projectNumber": "10001",
   "projectDate": "2025-04-17T01:14:45.590Z",
@@ -84,6 +86,7 @@ INSERIR PROJETO SEM TAREFAS:
 
 
 INSERIR PROJETO COM TAREFAS:
+
 {
   "projectNumber": "10002",
   "projectDate": "2025-04-17T01:14:45.590Z",
@@ -111,11 +114,13 @@ INSERIR PROJETO COM TAREFAS:
   ]
 }
 
-PESQUISAR PROJETOS POR USUÁRIO: 929B432B-B443-4F1C-E96D-08DD81270A84
+PESQUISAR PROJETOS POR USUÁRIO: 
+929B432B-B443-4F1C-E96D-08DD81270A84
 
 
 
 INSERIR SOMENTE TAREFA:
+
 {
      "projectId": "D4D38361-3493-4B98-A9C2-D7F33A10D565",
      "title": "Tarefa3",
@@ -126,28 +131,11 @@ INSERIR SOMENTE TAREFA:
 }
 
 ALTEAR TAREFA:
+
 {
      "Id": "75E20427-99DB-403B-D34B-08DD812B4E6B",
      "details":"testes detalhes123",
      "status": 2
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
