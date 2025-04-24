@@ -38,11 +38,16 @@ Na imagem chamar swagger: http://localhost:5001/swagger/index.html
 * Fiz parcialmente, faltou colocar na implementação.  
 
 6 - Testes:
+
 6.1 - No projeto XUnit.Coverlet.Collector: 
 dotnet test C:\Projetos\EclipseWorks.DeveloperEvaluation\tests\EclipseWorks.DeveloperEvaluation.Unit\EclipseWorks.DeveloperEvaluation.Collector.Unit\EclipseWorks.DeveloperEvaluation.Collector.Unit.csproj --collect:"XPlat Code Coverage"
+
 6.2 - No projeto XUnit.Coverlet.MSBuild:
+
 6.2.1 - dotnet tool update -g dotnet-reportgenerator-globaltool
+
 6.2.2 - dotnet test C:\Projetos\EclipseWorks.DeveloperEvaluation\tests\EclipseWorks.DeveloperEvaluation.Unit\EclipseWorks.DeveloperEvaluation.MSBuild.Unit1\EclipseWorks.DeveloperEvaluation.MSBuild.Unit.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+
 6.2.3 - reportgenerator -reports:"C:\Projetos\EclipseWorks.DeveloperEvaluation\tests\EclipseWorks.DeveloperEvaluation.Unit\EclipseWorks.DeveloperEvaluation.Collector.Unit\TestResults\931eb173-2b7d-44ee-8906-ce95c1eb40f4\coverage.cobertura.xml" -targetdir:"coveragereport" -reporttypes:Html coverage_report\index.html
 
 
